@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>創新之變 經典之位 — 土庫國小美感教育成果展</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-color: #f59e0b;
+            --accent-hover: #d97706;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #334155;
+            --link-color: #38bdf8;
+            --link-hover: #7dd3fc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* 頁首 Header */
+        header {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            padding: 60px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #ffffff, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-sub);
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* 主要內容區 Container */
+        .container {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding: 0 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        @media (min-width: 900px) {
+            .video-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* 影片卡片 */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1);
+        }
+
+        /* 響應式 16:9 影片區塊 */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .card-body {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+            line-height: 1.4;
+        }
+
+        .card-desc {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* 可互動時間軸區塊 */
+        .timestamps {
+            background: rgba(15, 23, 42, 0.6);
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 20px;
+            font-size: 0.88rem;
+        }
+
+        .timestamps h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .timestamps ul {
+            list-style: none;
+        }
+
+        .timestamps li {
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* 可點擊時間按鈕設計 */
+        .time-btn {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--link-color);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            margin-right: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .time-btn:hover {
+            background: var(--link-color);
+            color: #0f172a;
+            border-color: var(--link-color);
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: 700;
+            padding: 12px 0;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-hover);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: var(--text-sub);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="badge">廣達游於藝成果展</span>
+        <h1>創新之變 ‧ 經典之位</h1>
+        <p>彰化縣竹塘鄉土庫國小美感教育六載扎根與導覽小尖兵成果展示</p>
+    </header>
+
+    <div class="container">
+        <div class="video-grid">
+            
+            <!-- Video Card 1 -->
+            <div class="card">
+                <div class="video-wrapper">
+                    <iframe 
+                        id="player1"
+                        src="https://www.youtube.com/embed/n-jKJpQFXqA?enablejsapi=1" 
+                        title="土庫・六年築藝的創新風景_彰化縣竹塘鄉土庫國小第67屆校慶暨廣達游於藝成果展《創新之變‧經典之位》" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">土庫・六年築藝的創新風景</h2>
+                    <p class="card-desc">彰化縣竹塘鄉土庫國小第67屆校慶暨廣達游於藝成果展簡介，完整呈現師生如何結合在地美感營隊、傳統工藝與大師視角，展現勇於創新的土庫精神。</p>
+                    <div class="timestamps">
+                        <h4>📌 點擊時間標籤直接跳轉播放：</h4>
+                        <ul>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(1, 0)">[00:00:00]</button>
+                                <span>六載美感教育與展覽主題</span>
+                            </li>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(1, 81)">[00:01:21]</button>
+                                <span>暑期美感與自然美感營隊創作</span>
+                            </li>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(1, 166)">[00:02:46]</button>
+                                <span>導覽小尖兵口條與故事化訓練</span>
+                            </li>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(1, 277)">[00:04:37]</button>
+                                <span>誠摯邀請盛會與成果見證</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=n-jKJpQFXqA" target="_blank" rel="noopener noreferrer" class="btn">前往 YouTube 觀看</a>
+                </div>
+            </div>
+
+            <!-- Video Card 2 -->
+            <div class="card">
+                <div class="video-wrapper">
+                    <iframe 
+                        id="player2"
+                        src="https://www.youtube.com/embed/hvobYnxUzyw?enablejsapi=1" 
+                        title="第十七屆廣達游藝獎-創新之變 經典之位-彰化縣土庫國小-林杙蓁" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="card-body">
+                    <h2 class="card-title">第十七屆廣達游藝獎 — 導覽達人解說</h2>
+                    <p class="card-desc">由土庫國小導覽小尖兵林杙蓁細緻導覽齊白石國畫經典《酒柿圖》，帶領觀眾觀察生活細節中的美與「事事如意、百事合心」的深厚祝福。</p>
+                    <div class="timestamps">
+                        <h4>📌 點擊時間標籤直接跳轉播放：</h4>
+                        <ul>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(2, 15)">[00:00:15]</button>
+                                <span>國畫大師齊白石的農家背景</span>
+                            </li>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(2, 50)">[00:00:50]</button>
+                                <span>畫中柿子、酒壇與百合筆觸賞析</span>
+                            </li>
+                            <li>
+                                <button class="time-btn" onclick="seekTo(2, 116)">[00:01:56]</button>
+                                <span>「事事如意」吉祥寓意與心得</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="https://www.youtube.com/watch?v=hvobYnxUzyw" target="_blank" rel="noopener noreferrer" class="btn">前往 YouTube 觀看</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 彰化縣竹塘鄉土庫國小 廣達游於藝成果展紀錄頁面</p>
+    </footer>
+
+    <!-- YouTube IFrame API -->
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        let player1, player2;
+
+        // 當 API 準備好時初始化播放器
+        function onYouTubeIframeAPIReady() {
+            player1 = new YT.Player('player1');
+            player2 = new YT.Player('player2');
+        }
+
+        // 跳轉時間並播放的函式
+        function seekTo(playerNum, seconds) {
+            const player = (playerNum === 1) ? player1 : player2;
+            if (player && player.seekTo) {
+                player.seekTo(seconds, true);
+                player.playVideo();
+            }
+        }
+    </script>
+</body>
+</html>
